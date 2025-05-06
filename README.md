@@ -33,13 +33,13 @@ docker compose up -d
 
 ## Access URLs
 
-| Service | URL | Credentials |
-|---------|-----|-------------|
-| Frontend | [http://localhost:81](http://localhost:81) | - |
-| API (Swagger) | [http://localhost:81/api](http://localhost:81/api) | - |
-| MinIO Console | [http://localhost:9001](http://localhost:9001) | User: minio<br>Pass: minio123 |
-| phpMyAdmin | [http://localhost:8080](http://localhost:8080) | User: root<br>Pass: root |
-| MinIO API | [http://localhost:9000](http://localhost:9000) | - |
+| Service | URL                                              | Credentials |
+|---------|--------------------------------------------------|-------------|
+| Frontend | [http://localhost:81](http://localhost:81)       | - |
+| API (Swagger) | [http://localhost:5000](http://localhost:81/api) | - |
+| MinIO Console | [http://localhost:9001](http://localhost:9001)   | User: minio<br>Pass: minio123 |
+| phpMyAdmin | [http://localhost:8080](http://localhost:8080)   | User: root<br>Pass: root |
+| MinIO API | [http://localhost:9000](http://localhost:9000)   | - |
 
 ## Development
 
