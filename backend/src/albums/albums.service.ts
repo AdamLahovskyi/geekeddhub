@@ -11,21 +11,28 @@ export class AlbumsService {
       @InjectRepository(Album)
       private albumsRepository: Repository<Album>,
   ) {}
+
   async create(createAlbumDto: CreateAlbumDto): Promise<Album> {
     const album = new Album();
-    Object.assign(album, createAlbumDto);
-    album.created_at = new Date();
-    album.updated_at = new Date();
+    Object.assign(album,{
+      ...createAlbumDto,
+      release_date: createAlbumDto.release_date,
+      created_at: new Date(),
+      updated_at: new Date(),
+    });
     return this.albumsRepository.save(album);
   }
 
   findAll(): Promise<Album[]> {
-    return this.albumsRepository.find();
+    return this.albumsRepository.find({
+      relations: ['album_type'],
+    });
   }
 
   async findOne(id: number): Promise<Album> {
     const album = await this.albumsRepository.findOne({
-      where: { id }
+      where: { id },
+      relations: ['album_type'],
     });
     if (!album) {
       throw new NotFoundException(`Album with id ${id} not found`);
@@ -34,14 +41,13 @@ export class AlbumsService {
   }
 
   async update(id: number, updateAlbumDto: UpdateAlbumDto): Promise<Album>  {
-    const album = await this.albumsRepository.findOne({
-      where: { id }
+    const album = await this.findOne(id);
+    Object.assign(album, {
+      ...updateAlbumDto,
+      release_date: updateAlbumDto.release_date,
+      updated_at: new Date(),
     });
-    if (!album) {
-      throw new NotFoundException(`Album with id ${id} not found`);
-    }
-    Object.assign(album, updateAlbumDto);
-    album.updated_at = new Date();
+
     return this.albumsRepository.save(album);
   }
 

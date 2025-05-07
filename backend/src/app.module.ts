@@ -6,6 +6,7 @@ import { ConfigModule } from '@nestjs/config';
 import { UsersModule } from './users/users.module';
 import { RolesModule } from './roles/roles.module';
 import { AlbumsModule } from './albums/albums.module';
+import { AlbumTypesModule } from './album_types/album_types.module';
 
 @Module({
   imports: [
@@ -24,6 +25,7 @@ import { AlbumsModule } from './albums/albums.module';
     UsersModule,
     RolesModule,
     AlbumsModule,
+    AlbumTypesModule,
   ],
   controllers: [AppController],
   providers: [AppService],

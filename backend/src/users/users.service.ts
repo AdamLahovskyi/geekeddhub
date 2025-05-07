@@ -19,6 +19,7 @@ export class UsersService {
     user.username = createUserDto.username;
     user.email = createUserDto.email;
     user.password_hash = await bcrypt.hash(createUserDto.password, 10);
+    user.bio = createUserDto.bio;
     user.pfp_url = createUserDto.pfp_url || '';
     user.role_id = createUserDto.role_id;
     user.created_at = new Date();

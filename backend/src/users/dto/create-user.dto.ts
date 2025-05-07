@@ -22,6 +22,11 @@ export class CreateUserDto {
     pfp_url?: string;
 
     @ApiProperty()
+    @IsString()
+    @IsNotEmpty()
+    bio: string;
+
+    @ApiProperty()
     @IsNumber()
     role_id: number;
 }

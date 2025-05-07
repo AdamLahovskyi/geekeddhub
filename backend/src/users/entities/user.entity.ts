@@ -16,6 +16,9 @@ export class User {
     password_hash: string;
 
     @Column()
+    bio: string;
+
+    @Column()
     pfp_url: string;
 
     @Column({ nullable: true })
