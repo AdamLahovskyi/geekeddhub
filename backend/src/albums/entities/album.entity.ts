@@ -1,5 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from 'typeorm';
-import {AlbumType} from "../../album_types/entities/album_type.entity";
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany, JoinColumn } from 'typeorm';
+import { AlbumType } from '../../album_types/entities/album_type.entity';
+import { Track } from '../../tracks/entities/track.entity';
 
 @Entity('albums')
 export class Album {
@@ -21,6 +22,9 @@ export class Album {
     @ManyToOne(() => AlbumType, albumType => albumType.albums)
     @JoinColumn({ name: 'album_type_id' })
     album_type: AlbumType;
+
+    @OneToMany(() => Track, track => track.album)
+    tracks: Track[];
 
     @Column()
     total_tracks: number;

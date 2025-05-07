@@ -7,6 +7,7 @@ import { UsersModule } from './users/users.module';
 import { RolesModule } from './roles/roles.module';
 import { AlbumsModule } from './albums/albums.module';
 import { AlbumTypesModule } from './album_types/album_types.module';
+import { TracksModule } from './tracks/tracks.module';
 
 @Module({
   imports: [
@@ -26,6 +27,7 @@ import { AlbumTypesModule } from './album_types/album_types.module';
     RolesModule,
     AlbumsModule,
     AlbumTypesModule,
+    TracksModule,
   ],
   controllers: [AppController],
   providers: [AppService],
