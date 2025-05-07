@@ -17,7 +17,7 @@ export class TracksService {
 
   async create(createTrackDto: CreateTrackDto): Promise<Track> {
     const album = await this.albumsRepository.findOne({
-      where: {id: createTrackDto.album_id}
+      where: { id: createTrackDto.album_id },
     });
     if (!album) {
       throw new NotFoundException(`Album with id ${createTrackDto.album_id} not found`);
@@ -30,21 +30,21 @@ export class TracksService {
       created_at: new Date(),
       updated_at: new Date(),
     });
+
     return this.tracksRepository.save(track);
   }
 
-  findAll() : Promise<Track[]> {
+  findAll(): Promise<Track[]> {
     return this.tracksRepository.find({
-      relations: ['albums'],
+      relations: ['album'],
     });
   }
 
   async findOne(id: number): Promise<Track> {
     const track = await this.tracksRepository.findOne({
-      where: {id},
-      relations: ['albums'],
+      where: { id },
+      relations: ['album'],
     });
-
     if (!track) {
       throw new NotFoundException(`Track with id ${id} not found`);
     }
@@ -53,12 +53,13 @@ export class TracksService {
 
   async update(id: number, updateTrackDto: UpdateTrackDto): Promise<Track> {
     const track = await this.findOne(id);
-    if(updateTrackDto.album_id){
+
+    if (updateTrackDto.album_id) {
       const album = await this.albumsRepository.findOne({
-        where: {id: updateTrackDto.album_id},
+        where: { id: updateTrackDto.album_id },
       });
       if (!album) {
-        throw new NotFoundException(`Album with id ${id} not found`);
+        throw new NotFoundException(`Album with id ${updateTrackDto.album_id} not found`);
       }
       track.album = album;
     }
@@ -73,7 +74,7 @@ export class TracksService {
 
   async remove(id: number): Promise<void> {
     const result = await this.tracksRepository.delete(id);
-    if(result.affected === 0){
+    if (result.affected === 0) {
       throw new NotFoundException(`Track with id ${id} not found`);
     }
   }

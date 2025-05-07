@@ -3,11 +3,12 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
-import { UsersModule } from './users/users.module';
-import { RolesModule } from './roles/roles.module';
-import { AlbumsModule } from './albums/albums.module';
-import { AlbumTypesModule } from './album_types/album_types.module';
-import { TracksModule } from './tracks/tracks.module';
+import { UsersModule } from './models/users/users.module';
+import { RolesModule } from './models/roles/roles.module';
+import { AlbumsModule } from './models/albums/albums.module';
+import { AlbumTypesModule } from './models/album_types/album_types.module';
+import { TracksModule } from './models/tracks/tracks.module';
+import { ArtistsModule } from './models/artists/artists.module';
 
 @Module({
   imports: [
@@ -28,6 +29,7 @@ import { TracksModule } from './tracks/tracks.module';
     AlbumsModule,
     AlbumTypesModule,
     TracksModule,
+    ArtistsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

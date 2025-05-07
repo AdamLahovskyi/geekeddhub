@@ -1,5 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from 'typeorm';
+import {Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn, OneToOne} from 'typeorm';
 import { Role } from '../../roles/entities/role.entity';
+import {Artist} from "../../artists/entities/artist.entity";
 
 @Entity('users')
 export class User {
@@ -27,6 +28,9 @@ export class User {
     @ManyToOne(() => Role, { onDelete: 'SET NULL' })
     @JoinColumn({ name: 'role_id' })
     role: Role;
+
+    @OneToOne(() => Artist, artist => artist.user)
+    artist: Artist;
 
     @Column()
     created_at: Date;
