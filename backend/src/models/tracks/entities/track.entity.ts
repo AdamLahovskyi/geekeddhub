@@ -1,6 +1,7 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn, OneToMany } from 'typeorm';
 import { Album } from '../../albums/entities/album.entity';
 import {TrackArtist} from "../../track_artists/entities/track_artist.entity";
+import {TrackGenre} from "../../track_genres/entities/track_genre.entity";
 
 @Entity('tracks')
 export class Track {
@@ -32,4 +33,6 @@ export class Track {
     @OneToMany(() => TrackArtist, trackArtist => trackArtist.track)
     track_artists: TrackArtist[];
 
+    @OneToMany(() => TrackGenre, trackGenre => trackGenre.track)
+    track_genres: TrackGenre[];
 }
