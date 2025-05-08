@@ -1,6 +1,7 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany, JoinColumn } from 'typeorm';
 import { AlbumType } from '../../album_types/entities/album_type.entity';
 import { Track } from '../../tracks/entities/track.entity';
+import { AlbumArtist } from '../../album_artists/entities/album_artist.entity';
 
 @Entity('albums')
 export class Album {
@@ -37,4 +38,7 @@ export class Album {
 
     @Column()
     updated_at: Date;
+
+    @OneToMany(() => AlbumArtist, albumArtist => albumArtist.album)
+    album_artists: AlbumArtist[];
 }

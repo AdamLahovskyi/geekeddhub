@@ -1,6 +1,7 @@
 import {Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn, OneToOne, OneToMany} from 'typeorm';
 import {User} from "../../users/entities/user.entity";
 import { ArtistGenre } from '../../artist_genres/entities/artist_genre.entity';
+import { AlbumArtist } from '../../album_artists/entities/album_artist.entity';
 
 @Entity('artists')
 export class Artist {
@@ -25,4 +26,7 @@ export class Artist {
 
     @Column()
     created_at: Date;
+
+    @OneToMany(() => AlbumArtist, albumArtist => albumArtist.artist)
+    album_artists: AlbumArtist[];
 }
