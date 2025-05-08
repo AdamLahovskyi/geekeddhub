@@ -21,7 +21,7 @@ export class GenresService {
   }
 
   findOne(genre_id: number) {
-    return this.genresRepository.findOneBy({ genre_id });
+    return this.genresRepository.findOneBy({ id: genre_id });
   }
 
   update(genre_id: number, updateGenreDto: UpdateGenreDto) {

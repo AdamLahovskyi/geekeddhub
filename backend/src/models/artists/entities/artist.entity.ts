@@ -1,5 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn, OneToOne } from 'typeorm';
+import {Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn, OneToOne, OneToMany} from 'typeorm';
 import {User} from "../../users/entities/user.entity";
+import { ArtistGenre } from '../../artist_genres/entities/artist_genre.entity';
 
 @Entity('artists')
 export class Artist {
@@ -9,6 +10,9 @@ export class Artist {
     @OneToOne(() => User)
     @JoinColumn({ name: 'user_id' })
     user: User;
+
+    @OneToMany(() => ArtistGenre, artistGenre => artistGenre.artist)
+    artistGenres: ArtistGenre[];
 
     @Column()
     name: string;
