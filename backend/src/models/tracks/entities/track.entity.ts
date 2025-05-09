@@ -2,6 +2,8 @@ import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn, OneToMan
 import { Album } from '../../albums/entities/album.entity';
 import {TrackArtist} from "../../track_artists/entities/track_artist.entity";
 import {TrackGenre} from "../../track_genres/entities/track_genre.entity";
+import {PlaylistTrack} from "../../playlist-tracks/entities/playlist-track.entity";
+
 
 @Entity('tracks')
 export class Track {
@@ -35,4 +37,7 @@ export class Track {
 
     @OneToMany(() => TrackGenre, trackGenre => trackGenre.track)
     track_genres: TrackGenre[];
+
+    @OneToMany(() => PlaylistTrack, playlistTrack => playlistTrack.track)
+    playlist_tracks: PlaylistTrack[];
 }

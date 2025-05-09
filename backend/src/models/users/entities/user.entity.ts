@@ -1,6 +1,8 @@
-import {Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn, OneToOne} from 'typeorm';
+import {Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn, OneToOne, OneToMany} from 'typeorm';
 import { Role } from '../../roles/entities/role.entity';
 import {Artist} from "../../artists/entities/artist.entity";
+import {Playlist} from "../../playlists/entities/playlist.entity";
+import {SavedAlbum} from "../../saved_albums/entities/saved_album.entity";
 
 @Entity('users')
 export class User {
@@ -37,4 +39,10 @@ export class User {
 
     @Column()
     updated_at: Date;
+
+    @OneToMany(() => Playlist, playlist => playlist.created_by_user)
+    playlists: Playlist[];
+
+    @OneToMany(() => SavedAlbum, savedAlbum => savedAlbum.user)
+    saved_albums: SavedAlbum[];
 }

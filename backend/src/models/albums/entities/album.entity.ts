@@ -2,6 +2,7 @@ import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany, JoinColum
 import { AlbumType } from '../../album_types/entities/album_type.entity';
 import { Track } from '../../tracks/entities/track.entity';
 import { AlbumArtist } from '../../album_artists/entities/album_artist.entity';
+import {SavedAlbum} from "../../saved_albums/entities/saved_album.entity";
 
 @Entity('albums')
 export class Album {
@@ -41,4 +42,7 @@ export class Album {
 
     @OneToMany(() => AlbumArtist, albumArtist => albumArtist.album)
     album_artists: AlbumArtist[];
+
+    @OneToMany(() => SavedAlbum, savedAlbum => savedAlbum.album)
+    saved_albums: SavedAlbum[];
 }
